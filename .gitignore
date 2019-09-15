@@ -24,3 +24,5 @@ coverage
 # Compiled binary addons 
 build/Release
 
+# vscode live server
+.vscode
