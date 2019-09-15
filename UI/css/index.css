@@ -55,13 +55,13 @@
 }
 
 .navbar .nav-buttons button:nth-of-type(2){
-    background: var(--blue); 
+    background: linear-gradient(#968AC2, #4959A8); 
     color: var(--white);
-    
+    padding: 7px 10px;
 }
 
 .navbar .nav-buttons button:nth-of-type(1){
-    border: 1px solid var(--blue);
+    border: 1px solid #4959A8;
 }
 
 /* Content */
