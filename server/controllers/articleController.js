@@ -77,6 +77,21 @@ class articleController {
       message: 'articles successful deleted',
     });
   }
+
+  // methode to fetch all articles
+  static viewAllArticles(req, res) {
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (articles.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        error: 'articles not found',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: articles,
+    });
+  }
 }
 
 export default articleController;
