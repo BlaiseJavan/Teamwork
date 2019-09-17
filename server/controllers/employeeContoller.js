@@ -34,6 +34,32 @@ class userController {
       error: 'the email is already exist',
     });
   }
+
+  // signin method
+  static signin(req, res) {
+    const {
+      email, password,
+    } = req.body;
+    const checkUser = employees.find((e) => e.email === email);
+    if (checkUser) {
+      const checkedPassword = helper.comparePassword(checkUser.password, password);
+      if (!checkedPassword) {
+        return res.status(403).json({
+          status: 403,
+          massage: 'Invalid credentials',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        massage: 'User is successfully logged in',
+        data: checkUser,
+      });
+    }
+    return res.status(400).json({
+      status: 400,
+      massage: 'user with the email not found',
+    });
+  }
 }
 
 export default userController;
