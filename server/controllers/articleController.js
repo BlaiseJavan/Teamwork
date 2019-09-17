@@ -58,6 +58,25 @@ class articleController {
       data: articles.value,
     });
   }
+
+  // method to delete an article
+  static deleteArticle(req, res) {
+    // eslint-disable-next-line radix
+    const articleId = parseInt(req.params.id);
+    const deleteArticle = articles.find((a) => a.id === articleId);
+    if (!deleteArticle) {
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    }
+    const articleIndex = articles.indexOf(articleId);
+    articles.splice(articleIndex, 1);
+    return res.status(200).json({
+      status: 200,
+      message: 'articles successful deleted',
+    });
+  }
 }
 
 export default articleController;
