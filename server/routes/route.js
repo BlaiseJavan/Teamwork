@@ -12,5 +12,6 @@ app.post('/api/v1/auth/signin', userContoller.signin);
 // articles routes
 app.post('/api/v1/articles', auth, articlesController.createArticle);
 app.patch('/api/v1/editArticle/:id', auth, articlesController.editArticle);
+app.delete('/api/v1/deleteArticles/:id', auth, articlesController.deleteArticle);
 
 export default app;

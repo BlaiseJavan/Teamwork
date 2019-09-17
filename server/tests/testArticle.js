@@ -80,4 +80,26 @@ describe('Articles', () => {
         done();
       });
   });
+
+  it('should be able to delete an article', (done) => {
+    chai.request(app)
+      .delete(`/api/v1/deleteArticles/${id}`)
+      .set('token', token)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(200);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to delete an article when is not found', (done) => {
+    chai.request(app)
+      .delete(`/api/v1/deleteArticles/${wrongId}`)
+      .set('token', token)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(404);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
 });
