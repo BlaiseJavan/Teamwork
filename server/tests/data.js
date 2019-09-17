@@ -57,7 +57,7 @@ const id = 1;
 
 const wrongId = 3284;
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY4NDY3MjgxLCJleHAiOjE1NjkwNzIwODF9.5oAPdwsQM5f9PnR_arUoSdeCUDUswm48I8X-H2zirc4';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY4NzI3NjYzLCJleHAiOjE1NjkzMzI0NjN9.zpIdsZBuLY3KJW9PhDHIbXuetsVZl9uNJsBE_-Poga8';
 
 const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY4NDY3MjgxLCJl';
 
