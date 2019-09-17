@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/server';
 import {
-  newArticle, wrongArticle, token, wrongToken,
+  newArticle, wrongArticle, edArticle, id, wrongId, token, wrongToken,
 } from './data';
 
 chai.use(chaiHttp);
@@ -53,6 +53,29 @@ describe('Articles', () => {
       .send(wrongArticle)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should be able to edit an article', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/editArticle/${id}`)
+      .set('token', token)
+      .send(edArticle)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(200);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to edit an article when is not found', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/editArticle/${wrongId}`)
+      .set('token', token)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
