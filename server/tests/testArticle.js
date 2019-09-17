@@ -92,6 +92,28 @@ describe('Articles', () => {
       });
   });
 
+  it('should be able to view an article', (done) => {
+    chai.request(app)
+      .get(`/api/v1/articles/${id}`)
+      .set('token', token)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(200);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to view an article when is not exist', (done) => {
+    chai.request(app)
+      .get(`/api/v1/articles/${wrongId}`)
+      .set('token', token)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(404);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
   it('should be able to delete an article', (done) => {
     chai.request(app)
       .delete(`/api/v1/articles/${id}`)

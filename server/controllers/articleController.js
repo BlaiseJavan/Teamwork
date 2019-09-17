@@ -92,6 +92,24 @@ class articleController {
       data: articles,
     });
   }
+
+  // methode to view a specific article
+  static specificArticle(req, res) {
+    // eslint-disable-next-line radix
+    const articleId = parseInt(req.params.id);
+    const searchArticle = articles.find((a) => a.id === articleId);
+    if (!searchArticle) {
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: 'articles found',
+      data: searchArticle,
+    });
+  }
 }
 
 export default articleController;
