@@ -5,5 +5,6 @@ const app = express();
 
 // employees routes
 app.post('/api/v1/auth/signup', userContoller.signup);
+app.post('/api/v1/auth/signin', userContoller.signin);
 
 export default app;
