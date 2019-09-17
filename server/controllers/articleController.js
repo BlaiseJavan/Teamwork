@@ -33,6 +33,31 @@ class articleController {
       error: validationError,
     });
   }
+
+  // methode to update an article
+  static editArticle(req, res) {
+    // eslint-disable-next-line radix
+    const articleId = parseInt(req.params.id);
+    const { title, article } = req.body;
+    const userId = req.user.id;
+    const findArticle = articles.find((a) => a.id === articleId);
+    if (!findArticle) {
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    }
+    const findUserArticles = articles.filter((u) => u.userId === userId);
+    const editId = findUserArticles.find((e) => e.id === articleId);
+    editId.title = title;
+    editId.article = article;
+    editId.createdDate = moment().format('YYYY-MM-DD');
+    return res.status(200).json({
+      status: 200,
+      message: 'article successfully edited',
+      data: articles.value,
+    });
+  }
 }
 
 export default articleController;
