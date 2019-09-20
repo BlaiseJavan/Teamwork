@@ -43,6 +43,14 @@
         width: 40%;
     }
     
+    .alert-fail{
+		padding: 10px;
+		color: var(--white);
+        background-color: rgb(241, 158, 158);
+		margin: 5% auto 0 auto; 
+        width: 40%;
+    }
+    
     .box {
         background: var(--main);
         width: 40%;
@@ -166,4 +174,5 @@
 
     .links span:nth-of-type(2) a{
         margin-right: 2rem; 
+        float: right
     }

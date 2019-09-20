@@ -160,7 +160,7 @@
 
 .subscribe button {
     width: 100%;
-    background:  var(--blue); 
+    background:  #4959A8; 
     padding: 0.5rem;
     border: none;
     color: var(--white);
@@ -218,7 +218,7 @@
  }
 
  .article i{ 
-    color: var(--blue);
+    color: #4959A8;
  }
 
 .emp-info .article {
@@ -289,7 +289,7 @@ textarea {
 
 .cmt-btn {
     /* width: 100%; */
-    background:  var(--blue); 
+    background:  #4959A8; 
     padding: 0.5rem;
     border: none;
     color: var(--white);
@@ -302,7 +302,7 @@ textarea {
 }
 
 .comment form button{
-    background:  var(--blue); 
+    background:  #4959A8; 
     padding: 0.3rem;
     border: none;
     color: var(--white);
@@ -312,7 +312,7 @@ textarea {
 }
 
 .leave-cmt form button{
-    background:  var(--blue); 
+    background:  #4959A8; 
     padding: 0.3rem;
     border: none;
     color: var(--white);

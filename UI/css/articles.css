@@ -128,6 +128,7 @@
 .info h4 {
     float: left;
     margin: 1.3rem 0 0 0;
+    font-weight: normal;
 }
 .info span {
     float: left; 
@@ -139,14 +140,47 @@
     color: var(--dark);
 }
 
+.article h3{
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.reply a{
+    float: right;
+    margin: 0 1.3rem 0 0;
+    color: var(--main);
+    text-decoration: none;
+    background: green;
+    /* background: rgb(219, 93, 93); */
+    display: flex;
+    padding: 2rem 0.2rem 0.2rem 0.2rem; 
+    border-bottom-right-radius: 20%;
+    border-bottom-left-radius: 20%;
+}
+
+.reply a:hover {
+    box-shadow: var(--shadow);
+}
+
+.article hr {
+    margin: 1rem 0;
+}
+
 .read-more {
     float: right;
     text-decoration: none;
-    background: var(--blue);
-    color: var(--white);
+    background: #4959A8;
     padding: .2rem;
     margin-bottom: 0;
-    display: none;
+}
+
+.read-more a{
+    color: var(--main);
+}
+
+.read-more:hover {
+    box-shadow: var(--shadow);
 }
 
 /* More pages */
