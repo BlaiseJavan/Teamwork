@@ -1,4 +1,42 @@
 /* Article styles */
+/* Main styles */
+
+/* CSS Variables */
+:root {
+    --main: #ddd;
+    --dark: #333;
+    --white: #fff;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    --blue: rgb(89, 166, 230);
+    }
+    
+    *{
+        transition:all 0.1s ease-in-out;
+        margin: 0;
+        padding: 0
+    }
+    
+    html {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--dark);
+    }
+    
+    body {
+        background: 
+        url(../img/Crowd-Transparent-PNG.png),
+        radial-gradient(#968AC2, #4959A8);
+        line-height: 1.4;
+        background-repeat: repeat-x;
+        background-position: top;
+        padding: 0.40rem;
+        height: auto;
+    }
+    
+    img {
+        max-width: 100%;
+    }
+
 .btn {
     background: var(--dark);
     color: var(--white);
@@ -146,7 +184,7 @@
     font-weight: 700;
 }
 
-.reply a{
+.report a{
     float: right;
     margin: 0 1.3rem 0 0;
     color: var(--main);
@@ -159,7 +197,7 @@
     border-bottom-left-radius: 20%;
 }
 
-.reply a:hover {
+.report a:hover {
     box-shadow: var(--shadow);
 }
 
