@@ -6,7 +6,7 @@ dotenv.config();
 
 class helper {
   static generateToken(id) {
-    const token = tokens.sign({ id }, process.env.secret, { expiresIn: '7d' });
+    const token = tokens.sign({ id }, process.env.secret);
     return token;
   }
 

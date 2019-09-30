@@ -3,13 +3,16 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/server';
 import {
-  newEmployee, wrongNewEmployee, employee, wrongEmployee, otherEmployee,
+  newEmployee, wrongNewEmployee, employee,
+  wrongEmployee, invalidEmployee, InvalidNewEmployee,
+  otherEmployee, invalidLastName, invalidAddress, invalidDepartment,
+  invalidPhonenumber, invalidJobRole,
 } from './data';
 
 chai.use(chaiHttp);
 chai.should();
 
-describe('Employee', () => {
+describe('Employee tests', () => {
   it('should be able to sign up', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -21,12 +24,23 @@ describe('Employee', () => {
       });
   });
 
-  it('should not be able to sign up', (done) => {
+  it('should not be able to sign up when the user is wrong', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(wrongNewEmployee)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when the user is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(InvalidNewEmployee)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
         chai.expect(res.body).to.be.a('object');
         done();
       });
@@ -36,6 +50,61 @@ describe('Employee', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(newEmployee)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(409);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when lastName is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(invalidLastName)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when address is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(invalidAddress)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when department is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(invalidDepartment)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when jobROle is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(invalidJobRole)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign up when phonenumber is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(invalidPhonenumber)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(400);
         chai.expect(res.body).to.be.a('object');
@@ -59,7 +128,18 @@ describe('Employee', () => {
       .post('/api/v1/auth/signin')
       .send(wrongEmployee)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(403);
+        chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign in when username or password is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(invalidEmployee)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(401);
         chai.expect(res.body).to.be.a('object');
         done();
       });
