@@ -68,7 +68,7 @@
     }
 
     .navbar .nav-buttons a:nth-of-type(1){
-        border: 1px solid var(--blue);
+        border: 1px solid #4959A8;
         line-height: 13px;
     }
 
@@ -104,17 +104,17 @@
 
     .description h4{
         text-align: center;
-        color: var(--dark);
+        color: var(--main);
         font-weight: 300;
         font-size: 1.3rem;
-        background: var(--main);
         width: 50%; 
         margin: 2rem auto;
     }
 
     .description p{
         color: rgb(187, 187, 187);
-        margin-bottom: 2rem
+        margin-bottom: 2rem;
+        text-align: center;
     }
 
     /* Get started button  */
@@ -129,9 +129,9 @@
 
     .join-btn a{ 
         margin: 0 auto;
-        background: linear-gradient(#968AC2, #4959A8);
+        background: linear-gradient(var(--main), var(--main));
         border-radius: 40px;
-        color: var(--main);
+        color: var(--dark);
         padding: 8px 30px;
         text-decoration: none;
         font-size: 1.3rem;
