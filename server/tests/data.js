@@ -139,6 +139,10 @@ const comment = {
   comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
 };
 
+const invalidComment = {
+  comment: 'chkabjs7',
+};
+
 const id = 1;
 
 const wrongId = 3284;
@@ -169,4 +173,5 @@ export {
   invalidPhonenumber,
   invalidJobRole,
   comment,
+  invalidComment,
 };

@@ -46,6 +46,18 @@ describe('Article tests', () => {
       });
   });
 
+  it('should not be able to create a comment when the token is not valid', (done) => {
+    chai.request(app)
+      .post(`/api/v1/articles/${id}/comments`)
+      .set('token', wrongToken)
+      .send(comment)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(403);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
   it('should not be able to create an article when token is wrong', (done) => {
     chai.request(app)
       .post('/api/v1/articles')
