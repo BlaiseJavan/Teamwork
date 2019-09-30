@@ -3,13 +3,13 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/server';
 import {
-  newArticle, wrongArticle, edArticle, id, wrongId, token, wrongToken,
+  newArticle, wrongArticle, edArticle, id, wrongId, token, wrongToken, invalidArticle, comment,
 } from './data';
 
 chai.use(chaiHttp);
 chai.should();
 
-describe('Articles', () => {
+describe('Article tests', () => {
   it('should be able to create an article', (done) => {
     chai.request(app)
       .post('/api/v1/articles')
@@ -17,6 +17,30 @@ describe('Articles', () => {
       .send(newArticle)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(201);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should create a comment for a specific article', (done) => {
+    chai.request(app)
+      .post(`/api/v1/articles/${id}/comments`)
+      .set('token', token)
+      .send(comment)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(201);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to create a comment when the article is not found article', (done) => {
+    chai.request(app)
+      .post(`/api/v1/articles/${wrongId}/comments`)
+      .set('token', token)
+      .send(comment)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
@@ -51,6 +75,18 @@ describe('Articles', () => {
       .post('/api/v1/articles')
       .set('token', token)
       .send(wrongArticle)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should be able to create an article when is not valid', (done) => {
+    chai.request(app)
+      .post('/api/v1/articles')
+      .set('token', token)
+      .send(invalidArticle)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(401);
         chai.expect(res.body).to.be.a('object');
