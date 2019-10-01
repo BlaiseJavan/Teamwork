@@ -89,7 +89,7 @@
 		padding: 10px;
 		color: #4F8A10;
         background-color: #DFF2BF;
-		margin: 5% auto 0 auto; 
+		margin: 1% auto 0 auto; 
         width: 40%;
     }
     
@@ -99,7 +99,6 @@
         background-color: rgb(241, 158, 158);
 		margin: 5% auto 0 auto; 
         width: 40%;
-        /* color: rgb(231, 81, 81) */
     }
     
     
@@ -218,6 +217,7 @@
 
     .links {
         margin-top: 1rem;
+        text-align: center;
     }
 
     .links a{
