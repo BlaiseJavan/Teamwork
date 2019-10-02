@@ -54,34 +54,28 @@
         height: 15px;
     }
 
-    .navbar .nav-buttons{
+    .navbar .about-contact{
         float: right;
         line-height: 7vh;
         margin-right: 3rem;
         background: none;
     }
 
-    .navbar .nav-buttons a{
+    .navbar .about-contact a{
         margin-left: 1.5rem;
         border-radius: 20px;
         padding: 5px 10px;
         text-decoration: none;
+        color: var(--dark);
     }
 
-    .navbar .nav-buttons a:hover{
-        background: linear-gradient(#4959A8, #968AC2); 
-        color: var(--white);
-        box-shadow: var(--shadow);
+    .navbar .about-contact a:hover{
+        color: #4959A8; 
+       
     }
 
-    .navbar .nav-buttons a:nth-of-type(2){
-        background: linear-gradient(#968AC2, #4959A8); 
-        color: var(--white);
-        padding: 7px 10px; 
-    }
-
-    .navbar .nav-buttons a:nth-of-type(1){
-        border: 1px solid #4959A8;
+    .navbar .about-contact a:nth-of-type(1){
+        /* border: 1px solid #4959A8; */
         line-height: 13px;
     }
 
