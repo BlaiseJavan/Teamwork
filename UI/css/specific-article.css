@@ -29,6 +29,8 @@
         background-position: top;
         padding: 0.40rem;
         height: auto;
+        margin: 0;
+        padding: 0
     }
     
     img {
@@ -57,7 +59,7 @@
     text-decoration: none;
     border: 0;
 }
-
+/* Navbar */
 .logo {
     display: grid;
     grid-gap: 20px;
@@ -65,9 +67,15 @@
     text-decoration: none;
     line-height: 47.83px;
     color: var(--dark);
-    width: 250px;  
-    
-    margin-bottom: 6.5rem; 
+    width: 150px;  
+    margin-bottom: 13rem; 
+}
+
+.navbar {
+    background: var(--white);
+    /* height: 7vh; */
+    padding: 1rem 80px;
+    margin: -20px -80px -30px -80px;
 }
 
 .navbar ul{
@@ -82,10 +90,10 @@
 
 .navbar ul li a{
     text-decoration: none;
-    color: var(--white);
+    color: var(--dark);
     padding-left: 3rem;
-    font-size: 1.3rem;
-}
+    font-size: 1.2rem;
+}       
 
 /*Container */
 .container {
@@ -419,14 +427,6 @@ textarea {
     }
 }
 
-@media(max-width: 900px) and (min-width: 787px){
-    .navbar ul li:last-child {
-        display: flex;
-        text-align: center;
-        margin-top: 5.5rem;
-    }
-}
-
 @media(max-width: 990px) {
     .container {
         grid-template-areas: 
@@ -439,42 +439,6 @@ textarea {
     .ft-post span {
         line-height: 40px;
         padding-left: 4rem; 
-    }
-}
-
-
-@media(max-width: 786px) {
-    .logo {
-        margin-bottom: 5rem;  
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    header {
-        display: grid;
-        grid-gap: 20px; 
-        grid-template-columns: 1fr;
-    }
-    
-    .navbar ul {
-        display: grid;
-        grid-gap: 20px; 
-        grid-template-columns: repeat(4, 1fr);
-        text-align: center
-    }
-
-    .navbar ul li a{
-        padding-right: 3rem;
-        text-align: center;
-        padding-left: 0;
-    }
- 
-    .showcase-content {
-        margin-top: -39px;
-    }
-    
-    .tags {
-        margin: 0 auto;
     }
 }
  
@@ -788,3 +752,55 @@ table.user-info {
 .read-more:hover {
     text-decoration: underline;
 }
+
+@media(max-width: 700px) {  
+    .logo {
+        display: none;
+     }
+}
+
+@media(max-width: 900px) and (min-width: 787px){
+    .navbar ul li:last-child {
+        /* display: flex;
+        text-align: center;
+        margin-top: 5.5rem; */
+    }
+}
+
+@media(max-width: 786px) {
+    .logo {
+        margin-bottom: 1rem;  
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    header {
+        display: grid;
+        grid-gap: 20px; 
+        grid-template-columns: 1fr;
+        margin-bottom: 13rem;
+    }
+    
+    .navbar ul {
+        display: grid;
+        grid-gap: 20px; 
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center
+    }
+
+    .navbar ul li a{
+        padding-right: 3rem;
+        text-align: center;
+        padding-left: 0;
+    }
+ 
+    .showcase-content {
+        margin-top: -39px;
+    }
+    
+    .tags {
+        margin: 0 auto;
+    }
+}
+
