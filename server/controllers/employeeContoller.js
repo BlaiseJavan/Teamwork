@@ -66,8 +66,8 @@ class userController {
       });
     }
     const validationError = user.error.details[0].message.replace('"', ' ').replace('"', '');
-    return res.status(401).json({
-      status: 401,
+    return res.status(400).json({
+      status: 400,
       message: validationError,
     });
   }

@@ -28,8 +28,8 @@ class articleController {
       });
     }
     const validationError = newArticle.error.details[0].message.replace('"', ' ').replace('"', '');
-    return res.status(401).json({
-      status: 401,
+    return res.status(400).json({
+      status: 400,
       message: validationError,
     });
   }
@@ -75,7 +75,7 @@ class articleController {
     articles.splice(articleIndex, 1);
     return res.status(200).json({
       status: 200,
-      message: 'articles successful deleted',
+      message: 'article successful deleted',
     });
   }
 
@@ -107,7 +107,7 @@ class articleController {
     }
     return res.status(200).json({
       status: 200,
-      message: 'article found',
+      message: 'All articles',
       data: searchArticle,
     });
   }
