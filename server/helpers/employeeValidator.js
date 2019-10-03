@@ -14,7 +14,7 @@ const schema = Joi.object().keys({
     .error(() => ({ message: 'Invalid address ' })),
   phonenumber: Joi.string().min(2).regex(/^[0-9]{10,13}$/)
     .required()
-.error(() => ({ message: 'Invalid phonenumber ' })),
+    .error(() => ({ message: 'Invalid phonenumber ' })),
   password: Joi.string(),
   jobRole: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
     .required().error(() => ({ message: 'Invalid jobRole name' })),

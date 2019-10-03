@@ -47,15 +47,17 @@ class articleController {
         error: 'article not found',
       });
     }
-    const findUserArticles = articles.filter((u) => u.userId === userId);
-    const editId = findUserArticles.find((e) => e.id === articleId);
-    editId.title = title;
-    editId.article = article;
-    editId.createdDate = moment().format('YYYY-MM-DD');
+    // const foundUserArticle = articles.filter((u) => u.userId === userId);
+    const updatedArticle = articles.find((e) => e.id === articleId);
+    updatedArticle.title = title;
+    updatedArticle.article = article;
+    updatedArticle.createdDate = moment().format('YYYY-MM-DD');
+    const index = articles.indexOf(updatedArticle);
+    articles[index] = updatedArticle;
     return res.status(200).json({
       status: 200,
       message: 'article successfully edited',
-      data: articles,
+      data: updatedArticle,
     });
   }
 
