@@ -28,7 +28,7 @@ class CommentController {
       const validationError = newComment.error.details[0].message.replace('"', ' ').replace('"', '');
       return res.status(400).json({
         status: 400,
-        error: validationError,
+        message: validationError,
       });
     }
     return res.status(404).json({

@@ -28,13 +28,13 @@ class userController {
       }
       return res.status(409).json({
         status: 409,
-        error: 'the email is already exist',
+        message: 'the email is already exist',
       });
     }
     const validationError = newEmployee.error.details[0].message.replace('"', ' ').replace('"', '');
     return res.status(400).json({
       status: 400,
-      error: validationError,
+      message: validationError,
     });
   }
 
@@ -68,7 +68,7 @@ class userController {
     const validationError = user.error.details[0].message.replace('"', ' ').replace('"', '');
     return res.status(401).json({
       status: 401,
-      error: validationError,
+      message: validationError,
     });
   }
 }

@@ -1,8 +1,8 @@
 import Joi from '@hapi/joi';
 
 const schema = Joi.object().keys({
-  email: Joi.string().email().required().error((err) => ({ message: 'Invalid email' })),
-  password: Joi.string(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
 });
 
 export default schema;
