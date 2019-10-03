@@ -107,7 +107,7 @@ class articleController {
     }
     return res.status(200).json({
       status: 200,
-      message: 'articles found',
+      message: 'article found',
       data: searchArticle,
     });
   }

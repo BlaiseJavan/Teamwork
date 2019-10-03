@@ -11,8 +11,9 @@ const schema = Joi.object().keys({
     .required(),
   email: Joi.string().email().required(),
   address: Joi.string().alphanum().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
-  phonenumber: Joi.string().min(2).regex(/^[0-9]{10,13}$/).required(),
-  password: Joi.string(),
+  phonenumber: Joi.string().min(2).regex(/^[0-9]{10,13}$/)
+    .required(),
+  password: Joi.string().required(),
   jobRole: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
     .required(),
 });
