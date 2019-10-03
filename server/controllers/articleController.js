@@ -24,13 +24,13 @@ class articleController {
       }
       return res.status(400).json({
         status: 400,
-        error: 'the title is used find a new one',
+        message: 'the title is used find a new one',
       });
     }
     const validationError = newArticle.error.details[0].message.replace('"', ' ').replace('"', '');
-    return res.status(401).json({
-      status: 401,
-      error: validationError,
+    return res.status(400).json({
+      status: 400,
+      message: validationError,
     });
   }
 
@@ -39,12 +39,11 @@ class articleController {
     // eslint-disable-next-line radix
     const articleId = parseInt(req.params.id);
     const { title, article } = req.body;
-    const userId = req.user.id;
     const findArticle = articles.find((a) => a.id === articleId);
     if (!findArticle) {
       return res.status(404).json({
         status: 404,
-        error: 'article not found',
+        message: 'article not found',
       });
     }
     // const foundUserArticle = articles.filter((u) => u.userId === userId);
@@ -69,14 +68,14 @@ class articleController {
     if (!deleteArticle) {
       return res.status(404).json({
         status: 404,
-        error: 'article not found',
+        message: 'article not found',
       });
     }
     const articleIndex = articles.indexOf(articleId);
     articles.splice(articleIndex, 1);
     return res.status(200).json({
       status: 200,
-      message: 'articles successful deleted',
+      message: 'article successful deleted',
     });
   }
 
@@ -86,7 +85,7 @@ class articleController {
     if (articles.length === 0) {
       return res.status(404).json({
         status: 404,
-        error: 'articles not found',
+        message: 'articles not found',
       });
     }
     return res.status(200).json({
@@ -103,12 +102,12 @@ class articleController {
     if (!searchArticle) {
       return res.status(404).json({
         status: 404,
-        error: 'article not found',
+        message: 'article not found',
       });
     }
     return res.status(200).json({
       status: 200,
-      message: 'articles found',
+      message: 'All articles',
       data: searchArticle,
     });
   }

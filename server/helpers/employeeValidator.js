@@ -3,21 +3,19 @@ import Joi from '@hapi/joi';
 const schema = Joi.object().keys({
   id: Joi.number().required(),
   firstname: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
-    .required().error(() => ({ message: 'Invalid firstname ' })),
+    .required(),
   lastname: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
-    .required().error(() => ({ message: 'Invalid lastname ' })),
+    .required(),
   gender: Joi.string().valid('male', 'female').required(),
   department: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
-    .required().error(() => ({ message: 'Invalid department ' })),
-  email: Joi.string().email().required().error(() => ({ message: 'Invalid email ' })),
-  address: Joi.string().alphanum().regex(/^[a-zA-Z0-9]{3,30}$/).required()
-    .error(() => ({ message: 'Invalid address ' })),
+    .required(),
+  email: Joi.string().email().required(),
+  address: Joi.string().alphanum().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
   phonenumber: Joi.string().min(2).regex(/^[0-9]{10,13}$/)
-    .required()
-    .error(() => ({ message: 'Invalid phonenumber ' })),
-  password: Joi.string(),
+    .required(),
+  password: Joi.string().required(),
   jobRole: Joi.string().regex(/^[a-zA-Z]{3,30}$/)
-    .required().error(() => ({ message: 'Invalid jobRole name' })),
+    .required(),
 });
 
 export default schema;
