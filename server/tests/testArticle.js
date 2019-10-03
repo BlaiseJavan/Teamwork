@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/server';
 import {
-  newArticle, wrongArticle, edArticle, id, wrongId, token, wrongToken, invalidArticle, comment,
+  newArticle, wrongArticle, edArticle, id, wrongId, token, wrongToken, comment,
 } from './data';
 
 chai.use(chaiHttp);
@@ -82,29 +82,18 @@ describe('Article tests', () => {
       });
   });
 
-  it('should be able to create an article when is not valid', (done) => {
+  it('should be able to create an article when the atricle is wrong', (done) => {
     chai.request(app)
       .post('/api/v1/articles')
       .set('token', token)
       .send(wrongArticle)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.statusCode).to.be.equal(400);
         chai.expect(res.body).to.be.a('object');
         done();
       });
   });
 
-  it('should be able to create an article when is not valid', (done) => {
-    chai.request(app)
-      .post('/api/v1/articles')
-      .set('token', token)
-      .send(invalidArticle)
-      .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(401);
-        chai.expect(res.body).to.be.a('object');
-        done();
-      });
-  });
 
   it('should be able to edit an article', (done) => {
     chai.request(app)

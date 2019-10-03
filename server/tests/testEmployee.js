@@ -139,7 +139,7 @@ describe('Employee tests', () => {
       .post('/api/v1/auth/signin')
       .send(invalidEmployee)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(401);
+        chai.expect(res.statusCode).to.be.equal(400);
         chai.expect(res.body).to.be.a('object');
         done();
       });
