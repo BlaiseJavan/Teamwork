@@ -55,7 +55,7 @@ class articleController {
     return res.status(200).json({
       status: 200,
       message: 'article successfully edited',
-      data: articles.value,
+      data: articles,
     });
   }
 
