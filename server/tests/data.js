@@ -12,6 +12,17 @@ const newEmployee = {
   department: 'financial',
 };
 
+const noPassord = {
+  email: 'blaise@gmail.com',
+  firstname: 'blaise',
+  lastname: 'irakoze',
+  address: 'kigali',
+  phonenumber: '0788211579',
+  jobRole: 'developer',
+  gender: 'male',
+  department: 'financial',
+};
+
 const invalidLastName = {
   email: 'blaise@gmail.com',
   firstname: 'blaise',
@@ -188,4 +199,5 @@ export {
   invalidComment,
   category,
   otherCategory,
+  noPassord,
 };

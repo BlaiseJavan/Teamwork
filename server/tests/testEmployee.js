@@ -6,7 +6,7 @@ import {
   newEmployee, wrongNewEmployee, employee,
   wrongEmployee, invalidEmployee, InvalidNewEmployee,
   otherEmployee, invalidLastName, invalidAddress,
-  invalidDepartment, invalidPhonenumber, invalidJobRole,
+  invalidDepartment, invalidPhonenumber, invalidJobRole, noPassord,
 } from './data';
 
 chai.use(chaiHttp);
@@ -19,6 +19,17 @@ describe('Employee tests', () => {
       .send(newEmployee)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(201);
+        chai.expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+
+  it('should not be able to sign for user with no password', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(noPassord)
+      .end((err, res) => {
+        chai.expect(res.statusCode).to.be.equal(400);
         chai.expect(res.body).to.be.a('object');
         done();
       });

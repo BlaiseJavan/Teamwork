@@ -10,41 +10,47 @@ class userController {
     const {
       firstname, lastname, email, password, gender, phonenumber, jobRole, department, address,
     } = req.body;
-    const newEmployee = validator.validate({
+    if (password) {
+      const newEmployee = validator.validate({
       // eslint-disable-next-line max-len
-      id: empId, firstname, lastname, email, password: helper.hashPassword(password), gender, phonenumber, jobRole, department, address,
-    });
-    if (!newEmployee.error) {
-      const existEmail = employees.find((e) => e.email === email);
-      if (!existEmail) {
-        const token = helper.generateToken(empId);
+        id: empId, firstname, lastname, email, password: helper.hashPassword(password), gender, phonenumber, jobRole, department, address,
+      });
+      if (!newEmployee.error) {
+        const existEmail = employees.find((e) => e.email === email);
+        if (!existEmail) {
+          const token = helper.generateToken(empId);
 
-        employees.push(newEmployee.value);
-        return res.status(201).json({
-          status: 201,
-          token,
-          data: {
-            Id: empId,
-            Firstame: firstname,
-            Lastame: lastname,
-            Email: email,
-            Gender: gender,
-            Phone: phonenumber,
-            Jobrole: jobRole,
-            Department: department,
-            Address: address,
-          },
+          employees.push(newEmployee.value);
+          return res.status(201).json({
+            status: 201,
+            token,
+            data: {
+              Id: empId,
+              Firstame: firstname,
+              Lastame: lastname,
+              Email: email,
+              Gender: gender,
+              Phone: phonenumber,
+              Jobrole: jobRole,
+              Department: department,
+              Address: address,
+            },
+          });
+        }
+        return res.status(409).json({
+          status: 409,
+          message: 'the email is already exist',
         });
       }
-      return res.status(409).json({
-        status: 409,
-        message: 'the email is already exist',
+      const validationError = newEmployee.error.details[0].message.replace('"', ' ').replace('"', '');
+      return res.status(400).json({
+        status: 400,
+        message: validationError,
       });
     }
-    const validationError = newEmployee.error.details[0].message.replace('"', ' ').replace('"', '');
     return res.status(400).json({
       status: 400,
-      message: validationError,
+      error: 'password is required',
     });
   }
 
