@@ -16,6 +16,8 @@ app.patch('/api/v1/articles/:id', auth, articlesController.editArticle);
 app.delete('/api/v1/articles/:id', auth, articlesController.deleteArticle);
 app.get('/api/v1/articles', auth, articlesController.viewAllArticles);
 app.get('/api/v1/articles/:id', auth, articlesController.specificArticle);
+app.get('/api/v1/articles/:tag/category', auth, articlesController.viewArticlesCategory);
+app.patch('/api/v1/articles/:id/flag', auth, articlesController.flagArticle);
 
 // comment routes
 app.post('/api/v1/articles/:id/comments', auth, CommentController.createComment);

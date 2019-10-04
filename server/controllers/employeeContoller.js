@@ -23,18 +23,28 @@ class userController {
         return res.status(201).json({
           status: 201,
           token,
-          data: newEmployee.value,
+          data: {
+            Id: empId,
+            Firstame: firstname,
+            Lastame: lastname,
+            Email: email,
+            Gender: gender,
+            Phone: phonenumber,
+            Jobrole: jobRole,
+            Department: department,
+            Address: address,
+          },
         });
       }
       return res.status(409).json({
         status: 409,
-        error: 'the email is already exist',
+        message: 'the email is already exist',
       });
     }
     const validationError = newEmployee.error.details[0].message.replace('"', ' ').replace('"', '');
     return res.status(400).json({
       status: 400,
-      error: validationError,
+      message: validationError,
     });
   }
 
@@ -57,18 +67,28 @@ class userController {
         return res.status(200).json({
           status: 200,
           massage: 'User is successfully logged in',
-          data: checkUser,
+          data: {
+            Id: checkUser.empId,
+            Firstame: checkUser.firstname,
+            Lastame: checkUser.lastname,
+            Email: checkUser.email,
+            Gender: checkUser.gender,
+            Phone: checkUser.phonenumber,
+            Jobrole: checkUser.jobRole,
+            Department: checkUser.department,
+            Address: checkUser.address,
+          },
         });
       }
-      return res.status(400).json({
-        status: 400,
+      return res.status(404).json({
+        status: 404,
         massage: 'user with the email not found',
       });
     }
     const validationError = user.error.details[0].message.replace('"', ' ').replace('"', '');
-    return res.status(401).json({
-      status: 401,
-      error: validationError,
+    return res.status(400).json({
+      status: 400,
+      message: validationError,
     });
   }
 }
