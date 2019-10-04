@@ -1,3 +1,5 @@
+import jwt from '../helpers/helper';
+
 const newEmployee = {
   email: 'blaise@gmail.com',
   firstname: 'blaise',
@@ -117,6 +119,7 @@ const otherEmployee = {
 const newArticle = {
   title: 'article1',
   article: 'Checking the network cables, modem, and router',
+  tag: 'sport',
 };
 
 const wrongArticle = {
@@ -139,15 +142,23 @@ const comment = {
   comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
 };
 
+const wrongComment = {
+  comment: 'Lorem ip',
+};
+
 const invalidComment = {
   comment: 'chkabjs7',
 };
+
+const category = 'sport';
+
+const otherCategory = 'music';
 
 const id = 1;
 
 const wrongId = 3284;
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY5NjkzNzI4fQ.1JeakDS-3bB19GnWxnpvCdubLAXoiF1FlL139bM2a-c';
+const token = jwt.generateToken(id);
 
 const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY4NDY3MjgxLCJl';
 
@@ -173,5 +184,8 @@ export {
   invalidPhonenumber,
   invalidJobRole,
   comment,
+  wrongComment,
   invalidComment,
+  category,
+  otherCategory,
 };

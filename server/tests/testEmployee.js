@@ -5,8 +5,8 @@ import app from '../src/server';
 import {
   newEmployee, wrongNewEmployee, employee,
   wrongEmployee, invalidEmployee, InvalidNewEmployee,
-  otherEmployee, invalidLastName, invalidAddress, invalidDepartment,
-  invalidPhonenumber, invalidJobRole,
+  otherEmployee, invalidLastName, invalidAddress,
+  invalidDepartment, invalidPhonenumber, invalidJobRole,
 } from './data';
 
 chai.use(chaiHttp);
@@ -150,7 +150,7 @@ describe('Employee tests', () => {
       .post('/api/v1/auth/signin')
       .send(otherEmployee)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
