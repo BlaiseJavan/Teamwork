@@ -99,7 +99,9 @@ Heroku
 
 ### API link
 
-Heroku: (https://teamwork-adc.herokuapp.com/)
+[Heroku](https://teamwork-adc.herokuapp.com/)
+
+[API Documentation](https://documenter.getpostman.com/view/5307042/SVtR1qMD)
 
 ## Getting started
 
