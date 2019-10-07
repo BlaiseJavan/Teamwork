@@ -1,15 +1,6 @@
-import tokens from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import bcrypt from 'bcrypt-nodejs';
 
-dotenv.config();
-
-class helper {
-  static generateToken(id) {
-    const token = tokens.sign({ id }, process.env.secret);
-    return token;
-  }
-
+class Helper {
   static hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   }
@@ -19,4 +10,4 @@ class helper {
   }
 }
 
-export default helper;
+export default Helper;
