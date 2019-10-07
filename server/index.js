@@ -1,6 +1,6 @@
 import express from 'express';
-import route from '../routes/route';
-import routev2 from '../../server-v2/routes/route';
+import route from './routes/route';
+import routev2 from '../server-v2/routes/route';
 
 const app = express();
 app.use(express.json());
