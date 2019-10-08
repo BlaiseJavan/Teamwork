@@ -63,6 +63,16 @@ class Employee {
     const result = await db.query('DELETE FROM employee;');
     return result;
   }
+
+  static async selectCount(table, column, value){
+    const result = await db.query(`SELECT COUNT(1) FROM ${table} WHERE ${column} = '${value}';`);
+    return result;
+  }
+
+  static async findEmployee(email) {
+    const result = await db.query(`SELECT firstname, lastname, username, email FROM employee WHERE email='${email}';`);
+    return result;
+  }
 }
 
 export default Employee;

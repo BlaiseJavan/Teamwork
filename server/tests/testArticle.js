@@ -62,7 +62,7 @@ describe('Article tests', () => {
       .set('token', token)
       .send(comment)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(201);
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
@@ -75,7 +75,7 @@ describe('Article tests', () => {
       .set('token', token)
       .send(wrongComment)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(400);
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
@@ -99,7 +99,7 @@ describe('Article tests', () => {
       .set('token', wrongToken)
       .send(comment)
       .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(403);
+        chai.expect(res.statusCode).to.be.equal(404);
         chai.expect(res.body).to.be.a('object');
         done();
       });
