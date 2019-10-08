@@ -10,6 +10,7 @@ class articleController {
     const articleId = articles.length + 1;
     const createdDate = moment().format();
     const userId = req.user.id;
+    console.log(userId);
     const newArticle = validator.validate({
       id: articleId, date: createdDate, title, article, tag, userId, status: 'regular',
     });

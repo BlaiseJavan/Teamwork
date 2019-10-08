@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../src/server';
+import app from '..';
 import {
   newEmployee, wrongNewEmployee, employee,
   wrongEmployee, invalidEmployee, InvalidNewEmployee,

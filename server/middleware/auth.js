@@ -3,19 +3,22 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
-  const { token } = req.headers;
-  // eslint-disable-next-line consistent-return
-  jwt.verify(token, process.env.secret, (error, data) => {
-    if (error) {
-      return res.status(403).json({
-        status: 403,
-        error: 'authantication is not valid',
-      });
+  try {
+    const { token } = req.headers;
+    const verifyToken = jwt.verify(token, process.env.secret);
+
+    if (verifyToken) {
+      req.user = verifyToken;
+      next();
     }
-    req.user = data;
-    next();
-  });
+  } catch (error) {
+    return res.status(403).json({
+      status: 403,
+      error: 'authantication is not valid',
+    });
+  }
 };
 
 export default auth;
