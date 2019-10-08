@@ -64,13 +64,18 @@ class Employee {
     return result;
   }
 
-  static async selectCount(table, column, value){
+  static async selectCount(table, column, value) {
     const result = await db.query(`SELECT COUNT(1) FROM ${table} WHERE ${column} = '${value}';`);
     return result;
   }
 
   static async findEmployee(email) {
     const result = await db.query(`SELECT firstname, lastname, username, email FROM employee WHERE email='${email}';`);
+    return result;
+  }
+
+  static async findBy(colomn, email) {
+    const result = await db.query(`SELECT * FROM ${colomn} WHERE email='${email}';`);
     return result;
   }
 }
