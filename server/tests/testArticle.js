@@ -56,31 +56,6 @@ describe('Article tests', () => {
       });
   });
 
-  it('should create a comment for a specific article', (done) => {
-    chai.request(app)
-      .post(`/api/v1/articles/${id}/comments`)
-      .set('token', token)
-      .send(comment)
-      .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(201);
-        chai.expect(res.body).to.be.a('object');
-        done();
-      });
-  });
-
-
-  it('should create a comment for a specific article', (done) => {
-    chai.request(app)
-      .post(`/api/v1/articles/${id}/comments`)
-      .set('token', token)
-      .send(wrongComment)
-      .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(400);
-        chai.expect(res.body).to.be.a('object');
-        done();
-      });
-  });
-
   it('should not be able to create a comment when the article is not found article', (done) => {
     chai.request(app)
       .post(`/api/v1/articles/${wrongId}/comments`)
@@ -88,18 +63,6 @@ describe('Article tests', () => {
       .send(comment)
       .end((err, res) => {
         chai.expect(res.statusCode).to.be.equal(404);
-        chai.expect(res.body).to.be.a('object');
-        done();
-      });
-  });
-
-  it('should not be able to create a comment when the token is not valid', (done) => {
-    chai.request(app)
-      .post(`/api/v1/articles/${id}/comments`)
-      .set('token', wrongToken)
-      .send(comment)
-      .end((err, res) => {
-        chai.expect(res.statusCode).to.be.equal(403);
         chai.expect(res.body).to.be.a('object');
         done();
       });

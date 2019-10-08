@@ -16,6 +16,7 @@ class CommentController {
     const newComment = validator.validate({
       id, comment, createdOn, commenterId, articleId,
     });
+    console.log(findArticle);
     if (findArticle) {
       if (!newComment.error) {
         comments.push(newComment.value);

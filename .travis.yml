@@ -4,13 +4,10 @@ node_js: "stable"
 
 install: npm install
 
-cache:
-  directories: node_modules  
+services: postgresql
+
+before_script: psql -c 'create database teamwork_test;' -U postgres
 
 script: npm test
 
 after_success: npm run coverage
-
-addons:
-    repo_token:
-      secure: "cb4d9d40da5cabf8a677c8393067279ad1f0a6ec"
