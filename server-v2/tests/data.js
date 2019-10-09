@@ -1,29 +1,45 @@
 const newEmployee = {
   firstname: 'blaise',
-	lastname: 'blaise',
-	email: 'blaise@gmail.com',
-	username: 'blaise',
-	password: 'blaise'
-  };
+  lastname: 'blaise',
+  email: 'blaise@gmail.com',
+  username: 'blaise',
+  password: 'blaise',
+};
 
 const wrongNewEmployee = {
   firstname: 'blaise',
   lastname: 'blaise',
   email: 'blaise2@gmail.com',
-  username: 'blaise'
+  username: 'blaise',
 };
- 
+
 const emailExist = {
   firstname: 'blaise',
-	lastname: 'blaise',
-	email: 'blaise@gmail.com',
-	username: 'blaise',
-	password: 'blaise'
+  lastname: 'blaise',
+  email: 'blaise@gmail.com',
+  username: 'blaise',
+  password: 'blaise',
 };
-  
-  export {
-    wrongNewEmployee,
-    newEmployee,
-    emailExist
-  };
-  
+
+const employee = {
+  email: 'blaise@gmail.com',
+  password: 'blaise',
+};
+
+const wrongEmployee = {
+  email: 'blaise@gmail.com',
+  password: 'blais',
+};
+
+const requiredPass = {
+  email: 'blaise@gmail.com',
+};
+
+export {
+  wrongNewEmployee,
+  newEmployee,
+  emailExist,
+  employee,
+  wrongEmployee,
+  requiredPass,
+};
