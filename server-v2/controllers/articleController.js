@@ -62,6 +62,31 @@ class ArticleController {
       error: 'id is not valid',
     });
   }
+
+  // method to delete an article
+  static async deleteArticle(req, res) {
+    const column = 'id';
+    const articleId = req.params.id;
+    const employeeId = req.user.id;
+    const findArticle = await Article.findBy(column, articleId);
+    if (findArticle) {
+      if (findArticle.rows[0].employeeid === employeeId) {
+        await Article.Delete(articleId);
+        return res.status(200).json({
+          status: 200,
+          message: 'articles successful deleted',
+        });
+      }
+      return res.status(400).json({
+        status: 400,
+        error: 'not your article',
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'article not found',
+    });
+  }
 }
 
 export default ArticleController;
