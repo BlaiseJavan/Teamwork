@@ -42,6 +42,11 @@ class Article {
 
     return result;
   }
+
+  static async findAll() {
+    const result = await db.query('SELECT * FROM article ORDER BY createdon DESC');
+    return result;
+  }
 }
 
 export default Article;

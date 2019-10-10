@@ -22,6 +22,21 @@ class ArticleController {
       });
     }
   }
+
+  // methode to fetch all articles
+  static async viewAllArticles(req, res) {
+    const allArticles = await Article.findAll();
+    if (allArticles.rowCount === 0) {
+      return res.status(404).json({
+        status: 404,
+        error: 'articles not found',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: allArticles.rows,
+    });
+  }
 }
 
 export default ArticleController;
