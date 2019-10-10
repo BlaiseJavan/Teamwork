@@ -1,5 +1,4 @@
 /* eslint-disable radix */
-import checkId from 'validator';
 import Article from '../models/article';
 
 class ArticleController {
@@ -17,10 +16,10 @@ class ArticleController {
         status: 201,
         data: newArticle.rows[0],
       });
-    } catch (errors) {
-      return res.status(400).json({
-        status: 400,
-        data: errors,
+    } catch (error) {
+      return res.status(401).json({
+        status: 401,
+        message: 'invalid token',
       });
     }
   }
@@ -43,7 +42,7 @@ class ArticleController {
   // methode to view a specific article
   static async specificArticle(req, res) {
     const articleId = req.params.id;
-    if (checkId.isUUID(articleId) === true) {
+    try {
       const findArticle = await Article.findBy('id', articleId);
       if (findArticle) {
         return res.status(200).json({
@@ -56,11 +55,12 @@ class ArticleController {
         status: 404,
         error: 'article not found',
       });
+    } catch (error) {
+      return res.status(401).json({
+        status: 401,
+        message: 'invalid authantication',
+      });
     }
-    return res.status(400).json({
-      status: 400,
-      error: 'id is not valid',
-    });
   }
 
   // method to delete an article
@@ -69,23 +69,30 @@ class ArticleController {
     const articleId = req.params.id;
     const employeeId = req.user.id;
     const findArticle = await Article.findBy(column, articleId);
-    if (findArticle) {
-      if (findArticle.rows[0].employeeid === employeeId) {
-        await Article.Delete(articleId);
-        return res.status(200).json({
-          status: 200,
-          message: 'articles successful deleted',
+    try {
+      if (findArticle) {
+        if (findArticle.rows[0].employeeid === employeeId) {
+          await Article.Delete(articleId);
+          return res.status(200).json({
+            status: 200,
+            message: 'articles successful deleted',
+          });
+        }
+        return res.status(400).json({
+          status: 400,
+          error: 'not your article',
         });
       }
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    } catch (error) {
       return res.status(400).json({
         status: 400,
-        error: 'not your article',
+        message: 'the artic',
       });
     }
-    return res.status(404).json({
-      status: 404,
-      error: 'article not found',
-    });
   }
 }
 

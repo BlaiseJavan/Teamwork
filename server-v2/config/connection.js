@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 

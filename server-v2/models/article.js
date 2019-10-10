@@ -1,10 +1,8 @@
 import moment from 'moment';
-import uuid from 'uuid/v1';
 import db from '../config/connection';
 
 class Article {
   constructor(title, article, tags, employeeId) {
-    this.id = uuid();
     this.title = title;
     this.article = article;
     this.tags = tags;
@@ -16,10 +14,10 @@ class Article {
   static async createArticleTable() {
     const result = await db.query(`
     CREATE TABLE IF NOT EXISTS article (
-      id UUID PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       title  text,
       article  text,
-      employeeId UUID ,
+      employeeId SERIAL,
       tags text,
       report text,
       createdOn date,
@@ -29,8 +27,7 @@ class Article {
   }
 
   static async createArticle(data) {
-    const result = await db.query(`INSERT INTO article(id, title, article, employeeId, tags, report, createdOn) VALUES (
-        '${data.id}',
+    const result = await db.query(`INSERT INTO article(title, article, employeeId, tags, report, createdOn) VALUES (
         '${data.title}',
         '${data.article}',
         '${data.employeeId}',

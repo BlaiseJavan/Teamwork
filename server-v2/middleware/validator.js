@@ -23,6 +23,26 @@ class Validator {
     }
   }
 
+  static profile(req, res, next) {
+    const profileValidated = validation.profileValidation.validate({
+      gender: req.body.gender,
+      address: req.body.address,
+      jobrole: req.body.jobrole,
+      department: req.body.department,
+    });
+
+    if (!profileValidated.error) {
+      req.user = profileValidated;
+      next();
+    } else {
+      const errorMessage = profileValidated.error.details[0].message.replace('"', ' ').replace('"', '');
+      return res.status(400).json({
+        status: 400,
+        message: errorMessage,
+      });
+    }
+  }
+
   static signin(req, res, next) {
     const signinValidated = validation.signinValidation.validate({
       email: req.body.email,

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { expect } from 'chai';
 import request from 'supertest';
-import app from '../../server';
+import app from '..';
 import {
   newEmployee, wrongNewEmployee, emailExist, employee, wrongEmployee, requiredPass,
 } from './data';

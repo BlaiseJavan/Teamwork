@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '..';
+import app from '../../server-v2';
 import {
   newArticle, wrongArticle, edArticle, id, wrongId, token,
-  wrongToken, comment, wrongComment, category, otherCategory,
+  wrongToken, comment, category, otherCategory,
 } from './data';
 
 chai.use(chaiHttp);
