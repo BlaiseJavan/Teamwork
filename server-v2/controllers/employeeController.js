@@ -11,14 +11,17 @@ class employeeController {
       req.body.username,
       helper.hashPassword(req.body.password),
     );
+
     try {
-      const token = helper.generateToken(employee.id, employee.email, employee.isadmin);
       const newEmployee = await Employee.createUser(employee);
+      const token = helper.generateToken(newEmployee.rows[0].id, newEmployee.rows[0].email,
+        newEmployee.rows[0].isadmin);
       return res.status(201).json({
         status: 201,
         message: 'User sucessfuly added',
         userToken: token,
         data: {
+          id: newEmployee.rows[0].id,
           firstname: newEmployee.rows[0].firstname,
           lastname: newEmployee.rows[0].lastname,
           email: newEmployee.rows[0].email,
@@ -35,10 +38,6 @@ class employeeController {
 
   // signin method
   static async signin(req, res) {
-    // const { error } = helper.validator('signin', req.body);
-    // if (error) {
-    //   return helper.validationErrors(res, error.detail);
-    // }
     try {
       const checkUser = await Employee.findBy('email', req.body.email);
       if (checkUser.rowCount !== 0) {
@@ -73,6 +72,40 @@ class employeeController {
       return res.status(400).json({
         status: 400,
         massage: errors,
+      });
+    }
+  }
+
+  // methode to update an article
+  static async updateProfile(req, res) {
+    const empId = req.params.id;
+    const foundEmployee = await Employee.findBy('id', empId);
+    try {
+      if (foundEmployee) {
+        await Employee.updateProfile(empId, req.body);
+        return res.status(200).json({
+          status: 200,
+          message: 'successfully updated',
+          data: {
+            id: foundEmployee.rows[0].id,
+            firstname: foundEmployee.rows[0].firstname,
+            lastname: foundEmployee.rows[0].lastname,
+            email: foundEmployee.rows[0].email,
+            gender: foundEmployee.rows[0].gender,
+            department: foundEmployee.rows[0].department,
+            jobrole: foundEmployee.rows[0].jobrole,
+            address: foundEmployee.rows[0].address,
+          },
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        message: 'user not found',
+      });
+    } catch (error) {
+      return res.status(401).json({
+        status: 401,
+        message: 'invalid authentication',
       });
     }
   }

@@ -10,6 +10,6 @@ const app = express();
 // all routes
 app.use('/api/v1/auth', employee);
 app.use('/api/v1/articles', article);
-app.use('/api/v1/comments', comment)
+app.use('/api/v1/comments', comment);
 
 export default app;

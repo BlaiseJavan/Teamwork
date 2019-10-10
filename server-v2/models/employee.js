@@ -1,12 +1,10 @@
 import moment from 'moment';
-import uuid from 'uuid/v1';
 import db from '../config/connection';
 
 
 class Employee {
   constructor(firstname, lastname, email, username, password, address, gender, jobrole,
     department) {
-    this.id = uuid();
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
@@ -23,7 +21,7 @@ class Employee {
   static async createUserTable() {
     const result = await db.query(`
           CREATE TABLE IF NOT EXISTS employee (
-              id UUID PRIMARY KEY,
+              id SERIAL PRIMARY KEY,
               firstname text,
               lastname text,
               email text UNIQUE,
@@ -40,8 +38,8 @@ class Employee {
   }
 
   static async createUser(data) {
-    const result = await db.query(`INSERT INTO employee(id, firstname, lastname, email, username, password, address, gender, jobrole,
-        department, isadmin, createdon) VALUES('${data.id}',
+    const result = await db.query(`INSERT INTO employee(firstname, lastname, email, username, password, address, gender, jobrole,
+        department, isadmin, createdon) VALUES(
         '${data.firstname}',
         '${data.lastname}',
         '${data.email}',
@@ -74,10 +72,17 @@ class Employee {
     return result;
   }
 
-  static async findBy(colomn, email) {
-    const result = await db.query(`SELECT * FROM employee WHERE ${colomn}='${email}';`);
+  static async findBy(colomn, value) {
+    const result = await db.query(`SELECT * FROM employee WHERE ${colomn}='${value}';`);
+    return result;
+  }
+
+  static async updateProfile(id, data) {
+    const result = await db.query(`UPDATE employee SET address='${data.address}', 
+    gender='${data.gender}', jobrole='${data.jobrole}', 
+    department='${data.department}' WHERE id='${id}';`);
+
     return result;
   }
 }
-
 export default Employee;

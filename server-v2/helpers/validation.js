@@ -8,6 +8,13 @@ const employeeValidation = Joi.object().keys({
   username: Joi.string().required(),
 });
 
+const profileValidation = Joi.object().keys({
+  gender: Joi.string(),
+  address: Joi.string(),
+  jobrole: Joi.string(),
+  department: Joi.string(),
+});
+
 const signinValidation = Joi.object().keys({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
@@ -23,5 +30,6 @@ export default {
   articleValidation,
   employeeValidation,
   signinValidation,
+  profileValidation,
 
 };

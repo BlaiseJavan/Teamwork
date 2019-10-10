@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "babel ./server  -d build",
-    "start": "npm run build && node build/src/server.js",
+    "build": "babel ./server-v2 -d build",
+    "start": "npm run build && npm run db && node --require babel-core/register --require babel-polyfill build/index.js",
     "db": "node  --require babel-polyfill --require babel-core/register ./server-v2/db/db.js",
     "dev": "npm run db && nodemon --require babel-polyfill app.js",
     "test": "NODE_ENV=TEST npm run db && NODE_ENV=TEST nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-polyfill --require babel-register server/tests/*.js server-v2/tests/*.js --exit",
