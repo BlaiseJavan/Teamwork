@@ -1,3 +1,5 @@
+import helper from '../helpers/helper';
+
 const newEmployee = {
   firstname: 'blaise',
   lastname: 'blaise',
@@ -35,6 +37,14 @@ const requiredPass = {
   email: 'blaise@gmail.com',
 };
 
+const article = {
+  title: 'Lorem ipsum dolor sit amet consectttg jbcsjshs',
+  article: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt sed voluptate nobis distinctio. Suscipit, ullam rerum? Omnis, molestiae hic perferendis illo laboriosam qui ducimus placeat consequatur similique aliquam sint.',
+  tags: 'music',
+};
+
+const token = helper.generateToken();
+
 export {
   wrongNewEmployee,
   newEmployee,
@@ -42,4 +52,6 @@ export {
   employee,
   wrongEmployee,
   requiredPass,
+  article,
+  token,
 };

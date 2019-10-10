@@ -56,7 +56,7 @@ class Employee {
         ) returning *;
       `);
 
-    return result.error;
+    return result;
   }
 
   static async CleanEmployee() {
@@ -75,7 +75,7 @@ class Employee {
   }
 
   static async findBy(colomn, email) {
-    const result = await db.query(`SELECT * FROM ${colomn} WHERE email='${email}';`);
+    const result = await db.query(`SELECT * FROM employee WHERE ${colomn}='${email}';`);
     return result;
   }
 }
