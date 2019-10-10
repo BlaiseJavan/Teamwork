@@ -1,10 +1,12 @@
 import helper from '../helpers/helper';
 import Employee from '../models/employee';
+import Article from '../models/article';
 
 const createTables = async () => {
   const password = helper.hashPassword('admin');
 
   await Employee.createUserTable();
+  await Article.createArticleTable();
   await Employee.CleanEmployee();
 
   const employee = new Employee(

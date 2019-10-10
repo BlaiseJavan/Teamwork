@@ -4,52 +4,47 @@ import helper from '../helpers/helper';
 class employeeController {
   // signup method
   static async signup(req, res) {
-    const { error } = helper.validator('employee', req.body);
-    if (error) {
-      return helper.validationErrors(res, error);
-    }
-
-    const result = await Employee.selectCount('employee', 'email', req.body.email);
-    if (result.rows[0].count === '0') {
-      const employee = new Employee(
-        req.body.firstname,
-        req.body.lastname,
-        req.body.email,
-        req.body.username,
-        helper.hashPassword(req.body.password),
-      );
-      try {
-        const token = helper.generateToken(employee.id, employee.email, employee.isadmin);
-        await Employee.createUser(employee);
-        const newEmployee = await Employee.findEmployee(req.body.email);
-        return res.status(201).json({
-          status: 201,
-          message: 'User sucessfuly added',
-          userToken: token,
-          data: newEmployee.rows[0],
-        });
-      } catch (errors) {
-        return res.status(400).json({
-          status: 400,
-          message: errors,
-        });
-      }
-    } else {
+    // const { error } = helper.validator('employee', req.body);
+    // if (error) {
+    //   return helper.validationErrors(res, error);
+    // }
+    const employee = new Employee(
+      req.body.firstname,
+      req.body.lastname,
+      req.body.email,
+      req.body.username,
+      helper.hashPassword(req.body.password),
+    );
+    try {
+      const token = helper.generateToken(employee.id, employee.email, employee.isadmin);
+      const newEmployee = await Employee.createUser(employee);
+      return res.status(201).json({
+        status: 201,
+        message: 'User sucessfuly added',
+        userToken: token,
+        data: {
+          firstname: newEmployee.rows[0].firstname,
+          lastname: newEmployee.rows[0].lastname,
+          email: newEmployee.rows[0].email,
+          username: newEmployee.rows[0].username,
+        },
+      });
+    } catch (errors) {
       return res.status(409).json({
         status: 409,
-        message: 'the email exists',
+        message: 'the email already exist',
       });
     }
   }
 
   // signin method
   static async signin(req, res) {
-    const { error } = helper.validator('signin', req.body);
-    if (error) {
-      return helper.validationErrors(res, error);
-    }
+    // const { error } = helper.validator('signin', req.body);
+    // if (error) {
+    //   return helper.validationErrors(res, error.detail);
+    // }
     try {
-      const checkUser = await Employee.findBy('employee', req.body.email);
+      const checkUser = await Employee.findBy('email', req.body.email);
       if (checkUser.rowCount !== 0) {
         const checkedPassword = helper.comparePassword(
           checkUser.rows[0].password, req.body.password,
@@ -62,12 +57,16 @@ class employeeController {
         }
         const token = await helper.generateToken(checkUser.rows[0].id,
           req.body.email, checkUser.rows[0].isadmin);
-        const newEmployee = await Employee.findEmployee(req.body.email);
         return res.status(200).json({
           status: 200,
           massage: 'User is successfully logged in',
           token,
-          data: newEmployee.rows[0],
+          data: {
+            firstname: checkUser.rows[0].firstname,
+            lastname: checkUser.rows[0].lastname,
+            email: checkUser.rows[0].email,
+            username: checkUser.rows[0].username,
+          },
         });
       }
       return res.status(404).json({
