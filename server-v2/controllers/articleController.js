@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+import checkId from 'validator';
 import Article from '../models/article';
 
 class ArticleController {
@@ -35,6 +37,29 @@ class ArticleController {
     return res.status(200).json({
       status: 200,
       data: allArticles.rows,
+    });
+  }
+
+  // methode to view a specific article
+  static async specificArticle(req, res) {
+    const articleId = req.params.id;
+    if (checkId.isUUID(articleId) === true) {
+      const findArticle = await Article.findBy('id', articleId);
+      if (findArticle) {
+        return res.status(200).json({
+          status: 200,
+          message: 'article found',
+          data: findArticle.rows[0],
+        });
+      }
+      return res.status(404).json({
+        status: 404,
+        error: 'article not found',
+      });
+    }
+    return res.status(400).json({
+      status: 400,
+      error: 'id is not valid',
     });
   }
 }

@@ -47,6 +47,11 @@ class Article {
     const result = await db.query('SELECT * FROM article ORDER BY createdon DESC');
     return result;
   }
+
+  static async findBy(column, value) {
+    const result = await db.query(`SELECT * FROM article WHERE ${column}='${value}';`);
+    return result;
+  }
 }
 
 export default Article;

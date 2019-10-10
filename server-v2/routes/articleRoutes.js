@@ -8,5 +8,6 @@ const router = express();
 // articles routes
 router.post('/', validator.article, auth, articlesController.createArticle);
 router.get('/', auth, articlesController.viewAllArticles);
+router.get('/:id', auth, articlesController.specificArticle);
 
 export default router;

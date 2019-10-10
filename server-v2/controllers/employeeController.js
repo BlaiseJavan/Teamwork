@@ -4,10 +4,6 @@ import helper from '../helpers/helper';
 class employeeController {
   // signup method
   static async signup(req, res) {
-    // const { error } = helper.validator('employee', req.body);
-    // if (error) {
-    //   return helper.validationErrors(res, error);
-    // }
     const employee = new Employee(
       req.body.firstname,
       req.body.lastname,
