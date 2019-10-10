@@ -9,5 +9,6 @@ const router = express();
 router.post('/', validator.article, auth, articlesController.createArticle);
 router.get('/', auth, articlesController.viewAllArticles);
 router.get('/:id', auth, articlesController.specificArticle);
+router.delete('/:id', auth, articlesController.deleteArticle);
 
 export default router;

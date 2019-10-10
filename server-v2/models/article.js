@@ -52,6 +52,11 @@ class Article {
     const result = await db.query(`SELECT * FROM article WHERE ${column}='${value}';`);
     return result;
   }
+
+  static async Delete(id) {
+    const result = await db.query(`DELETE FROM article WHERE id='${id}';`);
+    return result;
+  }
 }
 
 export default Article;
