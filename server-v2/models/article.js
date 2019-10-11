@@ -54,6 +54,11 @@ class Article {
     const result = await db.query(`DELETE FROM article WHERE id='${id}';`);
     return result;
   }
+
+  static async update(title, article, id, tags) {
+    const result = await db.query(`UPDATE article SET title='${title}', article='${article}', tags='${tags}' WHERE id='${id}' returning *;`);
+    return result;
+  }
 }
 
 export default Article;

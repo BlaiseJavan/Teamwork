@@ -10,5 +10,6 @@ router.post('/', validator.article, auth, articlesController.createArticle);
 router.get('/', auth, articlesController.viewAllArticles);
 router.get('/:id', auth, articlesController.specificArticle);
 router.delete('/:id', auth, articlesController.deleteArticle);
+router.patch('/:id', validator.updateArticle, auth, articlesController.editArticle);
 
 export default router;

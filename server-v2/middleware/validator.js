@@ -77,5 +77,39 @@ class Validator {
       });
     }
   }
+
+  static updateArticle(req, res, next) {
+    const articleValidated = validation.updateArticleValidation.validate({
+      title: req.body.title,
+      article: req.body.article,
+      tags: req.body.tags,
+    });
+    if (!articleValidated.error) {
+      req.user = articleValidated;
+      next();
+    } else {
+      const errorMessage = articleValidated.error.details[0].message.replace('"', ' ').replace('"', '');
+      return res.status(400).json({
+        status: 400,
+        message: errorMessage,
+      });
+    }
+  }
+
+  static id(req, res, next) {
+    const idValidated = validation.id.validate({
+      id: req.body.id,
+    });
+    if (!idValidated.error) {
+      req.user = idValidated;
+      next();
+    } else {
+      const errorMessage = idValidated.error.details[0].message.replace('"', ' ').replace('"', '');
+      return res.status(400).json({
+        status: 400,
+        message: errorMessage,
+      });
+    }
+  }
 }
 export default Validator;

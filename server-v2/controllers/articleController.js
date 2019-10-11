@@ -94,6 +94,40 @@ class ArticleController {
       });
     }
   }
+
+  // methode to update an article
+  static async editArticle(req, res) {
+    const column = 'id';
+    const articleId = req.params.id;
+    const { title, article, tags } = req.body;
+    const employeeId = req.user.id;
+    const findArticle = await Article.findBy(column, articleId);
+    console.log(title)
+    if (findArticle) {
+      if (findArticle.rows[0].employeeid === employeeId) {
+        if (findArticle.rows[0].title === title && findArticle.rows[0].article === article && findArticle.rows[0].tags === tags) {
+          return res.status(300).json({
+            status: 300,
+            message: 'no modification found',
+          });
+        }
+        const updatedArticle = await Article.update(title || findArticle.rows[0].title, article || findArticle.rows[0].article, articleId, tags || findArticle.rows[0].tags);
+        return res.status(200).json({
+          status: 200,
+          message: 'article successfully edited',
+          data: updatedArticle.rows[0],
+        });
+      }
+      return res.status(400).json({
+        status: 400,
+        error: 'not your article',
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'article not found',
+    });
+  }
 }
 
 export default ArticleController;
