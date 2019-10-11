@@ -26,10 +26,21 @@ const articleValidation = Joi.object().keys({
   tags: Joi.string().valid('music', 'culture', 'sport').required(),
 });
 
+const updateArticleValidation = Joi.object().keys({
+  title: Joi.string().min(3),
+  article: Joi.string().min(10),
+  tags: Joi.string().valid('music', 'culture', 'sport'),
+});
+
+const id = Joi.object().keys({
+  id: Joi.number().required(),
+});
+
 export default {
   articleValidation,
   employeeValidation,
   signinValidation,
   profileValidation,
-
+  updateArticleValidation,
+  id
 };
