@@ -19,7 +19,7 @@ class ArticleController {
     } catch (error) {
       return res.status(401).json({
         status: 401,
-        message: 'invalid token',
+        message: 'invalid auth',
       });
     }
   }
@@ -78,9 +78,9 @@ class ArticleController {
             message: 'articles successful deleted',
           });
         }
-        return res.status(400).json({
-          status: 400,
-          error: 'not your article',
+        return res.status(401).json({
+          status: 401,
+          error: 'you are not allowed to delete this article',
         });
       }
       return res.status(404).json({
@@ -90,7 +90,7 @@ class ArticleController {
     } catch (error) {
       return res.status(400).json({
         status: 400,
-        message: 'the artic',
+        message: error,
       });
     }
   }
@@ -98,19 +98,25 @@ class ArticleController {
   // methode to update an article
   static async editArticle(req, res) {
     const column = 'id';
+    // receive article id from params
     const articleId = req.params.id;
+    // receive data from the client
     const { title, article, tags } = req.body;
+    // get employee id from token 
     const employeeId = req.user.id;
-    const findArticle = await Article.findBy(column, articleId);
-    console.log(title)
+    // check if article is exist
+    const findArticle = await Article.findBy(column, articleId); 
     if (findArticle) {
+      // check the owner of the article
       if (findArticle.rows[0].employeeid === employeeId) {
+        // check the data from database if are the same from the client
         if (findArticle.rows[0].title === title && findArticle.rows[0].article === article && findArticle.rows[0].tags === tags) {
           return res.status(300).json({
             status: 300,
             message: 'no modification found',
           });
         }
+        // calling update method
         const updatedArticle = await Article.update(title || findArticle.rows[0].title, article || findArticle.rows[0].article, articleId, tags || findArticle.rows[0].tags);
         return res.status(200).json({
           status: 200,
@@ -118,11 +124,13 @@ class ArticleController {
           data: updatedArticle.rows[0],
         });
       }
-      return res.status(400).json({
-        status: 400,
-        error: 'not your article',
+      // when is not the owner
+      return res.status(401).json({
+        status: 401,
+        error: 'you are not allowed to update this article',
       });
     }
+    // when article not found
     return res.status(404).json({
       status: 404,
       error: 'article not found',
