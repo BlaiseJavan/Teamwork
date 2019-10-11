@@ -101,7 +101,7 @@ Heroku
 
 [Heroku](https://teamwork-adc.herokuapp.com/)
 
-[API Documentation](https://documenter.getpostman.com/view/5307042/SVtR1qMD)
+[API Documentation](https://documenter.getpostman.com/view/5307042/SVtVTnp7)
 
 ## Getting started
 
