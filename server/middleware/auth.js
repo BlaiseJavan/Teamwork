@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
   try {
     const { token } = req.headers;
@@ -19,6 +18,7 @@ const auth = (req, res, next) => {
       error: 'authantication is not valid',
     });
   }
+  return 0;
 };
 
 export default auth;

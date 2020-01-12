@@ -1,203 +1,60 @@
-import jwt from '../helpers/helper';
+import helper from '../helpers/helper';
 
 const newEmployee = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali',
-  phonenumber: '0788211579',
-  password: 'blaise',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'financial',
-};
-
-const noPassord = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali',
-  phonenumber: '0788211579',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'financial',
-};
-
-const invalidLastName = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'i',
-  address: 'kigali',
-  phonenumber: '0788211579',
-  password: 'blaise',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'financial',
-};
-
-const invalidAddress = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali $$%',
-  phonenumber: '0788211579',
-  password: 'blaise',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'financial',
-};
-
-const invalidPhonenumber = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali',
-  phonenumber: '+0788211579',
-  password: 'blaise',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'financial',
-};
-
-const invalidDepartment = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali',
-  phonenumber: '0788211579',
-  password: 'blaise',
-  jobRole: 'developer',
-  gender: 'male',
-  department: 'r9',
-};
-
-const invalidJobRole = {
-  email: 'blaise@gmail.com',
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  address: 'kigali',
-  phonenumber: '0788211579',
-  password: 'blaise',
-  jobRole: 'd',
-  gender: 'male',
-  department: 'financial',
+   email: 'blais@gmail.com',
+   employeeName: 'blaise javan',
+   nationalId: '1111111111111122',
+   phoneNumber: '0788211577',
+   dob: '2020-02-20',
+   password: 'password'
 };
 
 const wrongNewEmployee = {
-  firstname: 'blaise56',
-  lastname: 'irakoze',
-  email: 'blais2e@gmail.com',
-  password: 'blaise',
-  gender: 'male',
-  phonenumber: '078821157',
-  jobRole: 'developer',
-  department: 'IT',
-  address: 'kigali',
+   email: 'blais@gmail.com',
+   employeeName: 'blaise javan',
+   nationalId: '1111111111111122',
+   dob: '2020-02-20',
+   password: 'password'
 };
 
-const InvalidNewEmployee = {
-  firstname: 'blaise',
-  lastname: 'irakoze',
-  email: 'blaisegmail.com',
-  password: 'blaise',
-  gender: 'male',
-  phonenumber: '0788211579',
-  jobRole: 'user',
-  department: 'financial',
-  address: 'kigali',
+const emailExist = {
+   email: 'blais@gmail.com',
+   employeeName: 'blaise javan',
+   nationalId: '1111111111111133',
+   phoneNumber: '0788211576',
+   dob: '2020-02-20',
+   password: 'password'
 };
 
 const employee = {
-  email: 'blaise@gmail.com',
-  password: 'blaise',
+  email: 'blais@gmail.com',
+  password: 'password',
 };
 
 const wrongEmployee = {
+  email: 'blais@gmail.com',
+  password: 'passw',
+};
+
+const requiredPass = {
   email: 'blaise@gmail.com',
-  password: 'blai',
 };
 
-const invalidEmployee = {
-  email: 'blaisegmail.com',
-  password: 'blaise',
+const article = {
+  title: 'Lorem ipsum dolor sit amet consectttg jbcsjshs',
+  article: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nesciunt sed voluptate nobis distinctio. Suscipit, ullam rerum? Omnis, molestiae hic perferendis illo laboriosam qui ducimus placeat consequatur similique aliquam sint.',
+  tags: 'music',
 };
 
-const otherEmployee = {
-  email: 'blaise1@gmail.com',
-  password: 'blaise',
-};
-
-const newArticle = {
-  title: 'article1',
-  article: 'Checking the network cables, modem, and router',
-  tag: 'sport',
-};
-
-const wrongArticle = {
-  article: 'Checking the network cables, modem, and router',
-  userId: 1,
-};
-
-const invalidArticle = {
-  title: 'articlee222',
-  article: 'Checki',
-};
-
-const edArticle = {
-  title: 'article1',
-  article: 'Checking the network cables',
-  userId: 1,
-};
-
-const comment = {
-  comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-};
-
-const wrongComment = {
-  comment: 'Lorem ip',
-};
-
-const invalidComment = {
-  comment: 'chkabjs7',
-};
-
-const category = 'sport';
-
-const otherCategory = 'music';
-
-const id = 1;
-
-const wrongId = 3284;
-
-const token = jwt.generateToken(id);
-
-const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTY4NDY3MjgxLCJl';
+const token = helper.generateToken();
 
 export {
   wrongNewEmployee,
-  InvalidNewEmployee,
   newEmployee,
+  emailExist,
   employee,
   wrongEmployee,
-  invalidEmployee,
-  otherEmployee,
-  newArticle,
-  wrongArticle,
-  invalidArticle,
-  edArticle,
-  id,
-  wrongId,
+  requiredPass,
+  article,
   token,
-  wrongToken,
-  invalidLastName,
-  invalidAddress,
-  invalidDepartment,
-  invalidPhonenumber,
-  invalidJobRole,
-  comment,
-  wrongComment,
-  invalidComment,
-  category,
-  otherCategory,
-  noPassord,
 };

@@ -5,8 +5,8 @@ import bcrypt from 'bcrypt-nodejs';
 dotenv.config();
 
 class helper {
-  static generateToken(id) {
-    const token = tokens.sign({ id }, process.env.secret);
+  static generateToken(id, email, isadmin) {
+    const token = tokens.sign({ id, email, isadmin }, process.env.secret, { expiresIn: '7d' });
     return token;
   }
 
